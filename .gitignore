@@ -1,0 +1,15 @@
+# Node (se usar depois)
+node_modules/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# VSCode
+.vscode/
+
+# GAS temp (se exportar)
+.clasp.json
