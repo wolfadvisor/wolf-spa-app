@@ -1,0 +1,155 @@
+/* =============================================================
+   main.css — Design tokens & shared component styles
+   Wolf Business Advisory
+   ============================================================= */
+
+/* ---- Fonts ---- */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+@import 'companies.css';
+/* ---- Design Tokens ---- */
+:root {
+  /* Brand colours */
+  --navy:          #080d1a;
+  --navy-light:    #0e1628;
+  --navy-mid:      #121d35;
+
+  --gold:          #c9a84c;
+  --gold-light:    #e2c068;
+  --gold-dim:      rgba(201,168,76,0.12);
+  --gold-glow:     rgba(201,168,76,0.35);
+
+  --blue-accent:   #2962ff;
+
+  /* Text */
+  --text-primary:  #f0e8d0;
+  --text-muted:    #7a8299;
+  --text-faint:    #3d4560;
+
+  /* Surfaces & borders */
+  --surface-1:     rgba(255,255,255,0.03);
+  --surface-2:     rgba(255,255,255,0.06);
+  --border-subtle: rgba(255,255,255,0.07);
+  --border-gold:   rgba(201,168,76,0.25);
+
+  /* Typography */
+  --font-mono:  'Space Mono', monospace;
+  --font-body:  'DM Sans', sans-serif;
+
+  /* Radii & shadows */
+  --radius-sm:   8px;
+  --radius-md:   14px;
+  --radius-lg:   20px;
+  --shadow-card: 0 24px 64px rgba(0,0,0,0.55);
+  --shadow-gold: 0 0 24px var(--gold-glow);
+}
+
+/* ---- Reset ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  font-family: var(--font-body);
+  background: var(--navy);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- Shared buttons ---- */
+.btn-gold {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  margin-bottom: 6px;
+  background: transparent;
+  border: 1.5px solid var(--border-gold);
+  border-radius: var(--radius-sm);
+  color: var(--gold);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.18s, border-color 0.18s, color 0.18s, box-shadow 0.18s;
+}
+.btn-gold:hover {
+  background: var(--gold-dim);
+  border-color: var(--gold);
+  box-shadow: 0 0 8px var(--gold-glow);
+}
+
+/* ---- Shared error banner ---- */
+.login-page__error {
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: rgba(231,76,60,0.12);
+  border: 1px solid rgba(231,76,60,0.3);
+  color: #e74c3c;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* ---- Shared input ---- */
+.login-page__input {
+  width: 100%;
+  padding: 11px 14px;
+  background: var(--surface-1);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+.login-page__input::placeholder { color: var(--text-faint); }
+.login-page__input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-dim);
+}
+
+/* ---- Shared submit button ---- */
+.login-page__submit {
+  width: 100%;
+  padding: 12px 20px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: #0a0800;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: opacity 0.18s, box-shadow 0.18s;
+}
+.login-page__submit:hover  { opacity: 0.92; box-shadow: var(--shadow-gold); }
+.login-page__submit:active { opacity: 0.85; }
+.login-page__submit:disabled { opacity: 0.55; cursor: not-allowed; }
+
+/* ---- Loading spinner (dots) ---- */
+.btn-spinner {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.btn-spinner span {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #0a0800;
+  animation: spinnerPulse 0.9s ease-in-out infinite;
+}
+.btn-spinner span:nth-child(2) { animation-delay: 0.15s; }
+.btn-spinner span:nth-child(3) { animation-delay: 0.30s; }
+
+@keyframes spinnerPulse {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+  40%           { transform: scale(1);   opacity: 1;   }
+}
+

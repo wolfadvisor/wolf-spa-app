@@ -1,0 +1,38 @@
+<div class="card profile-card">
+
+  <div class="profile-header">
+    <div class="profile-avatar" id="profileAvatar">--</div>
+
+    <div>
+      <h2 class="profile-name" id="profileName">—</h2>
+      <p class="profile-email" id="profileEmail">—</p>
+    </div>
+  </div>
+
+  <div class="profile-stats">
+    <div class="profile-stat">
+      <p class="profile-stat-value" id="profileTotal">—</p>
+      <p class="profile-stat-label">Total Orders</p>
+    </div>
+
+    <div class="profile-stat">
+      <p class="profile-stat-value" id="profileDone">—</p>
+      <p class="profile-stat-label">Completed</p>
+    </div>
+  </div>
+
+  <form id="profileForm" class="profile-form">
+
+    <input type="text" name="name" placeholder="Full Name" class="profile-input" required>
+    <input type="email" name="email" placeholder="Email" class="profile-input" required>
+    <input type="text" name="company" placeholder="Company" class="profile-input">
+    <input type="text" name="country" placeholder="Country" class="profile-input">
+
+    <button type="submit" class="btn-gold">Save Profile</button>
+    <button type="button" class="btn-gold" onclick="initProfileForm()">
+      Refresh Data
+    </button>
+
+  </form>
+
+</div>

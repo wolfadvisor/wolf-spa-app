@@ -1,0 +1,27 @@
+{
+  "name": "wolf-spa-app",
+  "version": "1.0.0",
+  "description": "The **Wolf Business Advisory Platform** is a Single Page Application (SPA) designed to manage and orchestrate international commodity trading operations, including ICPO, SCO, SPA, and client management.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wolfadvisor/wolf-spa-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/wolfadvisor/wolf-spa-app/issues"
+  },
+  "homepage": "https://github.com/wolfadvisor/wolf-spa-app#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

@@ -1,0 +1,149 @@
+<div class="card profile-card">
+
+  <!-- HEADER igual ao Profile -->
+  <div class="profile-header">
+    <div class="profile-avatar" id="icpoAvatar">--</div>
+    <div>
+      <h2 class="profile-name" id="icpoCompanyName">—</h2>
+      <p class="profile-email" id="icpoRepName">—</p>
+    </div>
+  </div>
+
+  <!-- STATS: histórico de ICPOs -->
+  <div class="profile-stats">
+    <div class="profile-stat">
+      <p class="profile-stat-value" id="icpoTotal">—</p>
+      <p class="profile-stat-label">Total ICPOs</p>
+    </div>
+    <div class="profile-stat">
+      <p class="profile-stat-value" id="icpoPending">—</p>
+      <p class="profile-stat-label">SCO Requested</p>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <form id="icpoForm" class="profile-form">
+
+    <!-- 🏢 EMPRESA -->
+    <p class="profile-section-label">🏢 Buyer Information</p>
+    <input type="text"  name="company"        placeholder="Company Name"           class="profile-input" required>
+    <textarea           name="address"         placeholder="Buyer Address"          class="profile-input profile-textarea" required></textarea>
+    <input type="text"  name="representative"  placeholder="Buyer Representative"   class="profile-input" required>
+
+    <!-- 📦 PRODUTO -->
+    <p class="profile-section-label">📦 Product</p>
+
+    <select name="designation" class="profile-input profile-select">
+      <option value="ICUMSA 45 White Sugar">ICUMSA 45 White Sugar</option>
+    </select>
+
+    <select name="cargo" class="profile-input profile-select">
+      <option value="Refined Sugar">Refined Sugar</option>
+    </select>
+
+    <select name="origin" class="profile-input profile-select">
+      <option value="Brazil">Brazil</option>
+    </select>
+
+    <select name="icumsa" class="profile-input profile-select">
+      <option value="ICUMSA 45">ICUMSA 45</option>
+    </select>
+
+    <select name="packaging" class="profile-input profile-select">
+      <option value="50 KG Bags">50 KG Bags</option>
+    </select>
+
+    <select name="qty" class="profile-input profile-select" required>
+      <option value="">Monthly Quantity (MT)...</option>
+      <option value="12500">12,500 MT/month</option>
+      <option value="25000">25,000 MT/month</option>
+      <option value="50000">50,000 MT/month</option>
+    </select>
+
+    <!-- 🚢 LOGÍSTICA -->
+    <p class="profile-section-label">🚢 Logistics</p>
+
+    <select name="incoterm" class="profile-input profile-select" required>
+      <option value="">Incoterm...</option>
+      <option value="CIF">CIF</option>
+      <option value="CFR">CFR</option>
+      <option value="DDP">DDP</option>
+    </select>
+
+    <input type="text" name="portLoading" placeholder="Port of Loading"      class="profile-input" required>
+    <input type="text" name="portDest"    placeholder="Port of Destination"  class="profile-input" required>
+
+    <input type="text" name="shipment"    placeholder="First Shipment Month (ex: August 2025)" class="profile-input" required>
+
+    <select name="contractPeriod" class="profile-input profile-select" required>
+      <option value="">Contract Period...</option>
+      <option value="6 months">6 months</option>
+      <option value="12 months">12 months</option>
+    </select>
+
+    <!-- 💰 PRICING -->
+    <p class="profile-section-label">💰 Pricing</p>
+    <input type="text" name="price" placeholder="Price per Ton (USD) — ex: 450" class="profile-input" required>
+
+    <!-- 🏦 PAGAMENTO -->
+    <p class="profile-section-label">🏦 Payment</p>
+
+    <select name="payment" class="profile-input profile-select" required>
+      <option value="">Payment Method...</option>
+      <option value="30/70 MT103 / TT">30/70 MT103 / TT</option>
+      <option value="50/50 MT103 / TT">50/50 MT103 / TT</option>
+      <option value="Full MT103">Full MT103</option>
+      <option value="SBLC">SBLC</option>
+    </select>
+
+    <input type="text" name="bankName"    placeholder="Bank Name"            class="profile-input">
+    <input type="text" name="bankAddress" placeholder="Bank Address"         class="profile-input">
+    <input type="text" name="swift"       placeholder="SWIFT / BIC Code"     class="profile-input">
+
+    <!-- ⏳ VALIDADE — calculada automaticamente (7 dias úteis) -->
+    <p class="profile-section-label">⏳ Validity</p>
+    <input type="text" name="validity" class="profile-input"
+           id="icpoValidity" readonly
+           placeholder="Auto: 7 business days from today">
+
+    <!-- ERRO -->
+    <div id="icpoError" class="login-page__error" style="display:none;"></div>
+
+    <!-- AÇÕES -->
+    <button type="submit" class="btn-gold">Save ICPO</button>
+
+    <button type="button" class="btn-gold" onclick="initIcpoForm()">
+      Refresh Data
+    </button>
+
+    <!-- 🔥 Request SCO — só aparece se já tiver um ICPO salvo -->
+    <button type="button" class="btn-gold" id="requestScoBtn"
+            style="display:none; background: linear-gradient(135deg,#c0392b,#e74c3c); color:#fff;"
+            onclick="requestSCO()">
+      🚀 Request SCO for this ICPO
+    </button>
+
+  </form>
+
+  <!-- HISTÓRICO -->
+  <div id="icpoHistory" style="margin-top: 24px; display:none;">
+    <p class="profile-section-label">📋 ICPO History</p>
+    <table class="home__table" id="icpoHistoryTable">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Company</th>
+          <th>Qty/Month</th>
+          <th>Incoterm</th>
+          <th>Price/Ton</th>
+          <th>Validity</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="icpoHistoryBody">
+        <tr><td colspan="7" class="home__table-empty">No records yet.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

@@ -1,0 +1,104 @@
+/* =============================================================
+   login.css — Login overlay, card and form styles
+   Wolf Business Advisory
+   ============================================================= */
+
+/* ---- Overlay ---- */
+#login-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at top right,    rgba(201,168,76,0.08), transparent 40%),
+    radial-gradient(circle at bottom left,  rgba(41,98,255,0.06),  transparent 40%),
+    var(--navy);
+}
+#login-overlay.hidden { display: none; }
+
+/* ---- Card ---- */
+.login-page__card {
+  width: 100%;
+  max-width: 420px;
+  padding: 40px 36px;
+  background: var(--navy-light);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+/* ---- Logo ---- */
+.login-page__logo-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+.login-page__logo {
+  width: 160px;
+  height: auto;
+}
+
+/* ---- Header ---- */
+.login-page__header   { text-align: center; margin-bottom: 28px; }
+.login-page__title    { font-family: var(--font-mono); font-size: 1.55rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+.login-page__subtitle { font-size: 0.85rem; color: var(--text-muted); }
+
+/* ---- Tabs ---- */
+.login-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.login-tab-btn {
+  flex: 1;
+  padding: 10px 8px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--gold);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.login-tab-btn.active {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: #0a0800;
+  box-shadow: 0 0 12px var(--gold-glow);
+  border-color: transparent;
+}
+.login-tab-btn.inactive {
+  background: transparent;
+  color: var(--gold);
+}
+.login-tab-btn.inactive:hover { background: var(--gold-dim); }
+
+/* ---- Google panel hint ---- */
+.google-hint {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  text-align: center;
+  line-height: 1.6;
+  padding: 12px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+}
+
+/* ---- Google sign-in button specifics ---- */
+#googleSignInBtn { margin-bottom: 0; }
+#errorGoogle     { margin-top: 12px; }
+
+/* ---- Email/password form ---- */
+.login-page__form  { display: flex; flex-direction: column; gap: 18px; }
+.login-page__field { display: flex; flex-direction: column; gap: 6px; }
+.login-page__label {
+  font-size: 0.73rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}

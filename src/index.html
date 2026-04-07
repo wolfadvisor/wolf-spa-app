@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base target="_top">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wolf Business Advisory</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles/index.css">
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/login.css">
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/profile.css">
+
+  <!-- jQuery + jQuery UI -->
+  <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+</head>
+<body>
+
+  <!-- ================================================================
+       LOGIN OVERLAY
+       Two tabs:
+         - "Sign in with Google" → OAuth2 via OAuth.gs
+         - "Admin Login"         → email + password via loginUser() in Code.gs
+  ================================================================ -->
+  <div id="login-overlay">
+    <div class="login-page__card">
+
+      <div class="login-page__logo-wrap">
+        <img
+          src="https://drive.google.com/thumbnail?id=1HkS_DaxYvrmEiFz2kjo-dpPFXfAj2X8I&sz=w300"
+          class="login-page__logo"
+          alt="Wolf Business Advisory"
+        >
+      </div>
+
+      <div class="login-page__header">
+        <h1 class="login-page__title">Welcome back</h1>
+        <p class="login-page__subtitle">Login to your account</p>
+      </div>
+
+      <!-- Tab switcher -->
+      <div class="login-tabs">
+        <button id="tabGoogle" class="login-tab-btn active" onclick="switchTab('google')">
+          Sign in with Google
+        </button>
+        <button id="tabEmail" class="login-tab-btn inactive" onclick="switchTab('email')">
+          Admin Login
+        </button>
+      </div>
+
+      <!-- Google OAuth panel -->
+      <div id="panelGoogle">
+        <div class="google-hint">
+          Your Google account must be pre-registered by the admin.<br>
+          Click below to authenticate with your Google account.
+        </div>
+
+        <button id="googleSignInBtn" class="login-page__submit">
+          <!-- Google logo SVG (inline, no CDN) -->
+          <svg width="18" height="18" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          </svg>
+          Sign in with Google
+        </button>
+
+        <div id="errorGoogle" class="login-page__error" style="display:none;"></div>
+      </div>
+
+      <!-- Admin email/password panel -->
+      <div id="panelEmail" style="display:none;">
+        <div class="login-page__form">
+          <div class="login-page__field">
+            <label class="login-page__label">Email</label>
+            <input
+              type="email"
+              id="email"
+              class="login-page__input"
+              placeholder="you@wolfbusinessadvisor.com"
+            >
+          </div>
+          <div class="login-page__field">
+            <label class="login-page__label">Password</label>
+            <input
+              type="password"
+              id="password"
+              class="login-page__input"
+              placeholder="••••••••"
+            >
+          </div>
+          <div id="errorMessage" class="login-page__error" style="display:none;"></div>
+          <button id="submitBtn" class="login-page__submit">Sign In</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ================================================================
+       APP SHELL
+  ================================================================ -->
+  <div id="app-shell" class="app">
+
+    <div class="sidebar">
+
+      <div class="sidebar__logo-wrap">
+        <img
+          src="https://drive.google.com/thumbnail?id=1HkS_DaxYvrmEiFz2kjo-dpPFXfAj2X8I&sz=w300"
+          class="sidebar__logo"
+          alt="Wolf Business Advisory"
+        >
+      </div>
+
+      <div class="sidebar__user">
+        <div class="user">
+          <div class="user__avatar" id="sidebarAvatar">--</div>
+          <div class="user__info">
+            <p id="sidebarUserName" class="user__name">—</p>
+            <p id="sidebarUserRole" class="user__meta">—</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="sidebar-accordion">
+        <h3>Profile</h3>
+        <div>
+          <button class="btn-gold" onclick="navigateTo('Profile')">Profile</button>
+          <button class="btn-gold" onclick="navigateTo('Companies')">Companies</button>
+          <button class="btn-gold" onclick="navigateTo('ICPO')">ICPO</button>
+          <button class="btn-gold" onclick="navigateTo('Dashboard')">Dashboard</button>
+        </div>
+        <h3>SCO</h3>
+        <div>
+          <button class="btn-gold" onclick="navigateTo('Request SCO')">Request SCO</button>
+        </div>
+        <h3>SPA</h3>
+        <div>
+          <button class="btn-gold" onclick="navigateTo('Request SPA')">Request SPA</button>
+        </div>
+      </div>
+
+      <button class="btn-gold" onclick="logout()" style="margin-top: auto;">Logout</button>
+
+    </div>
+
+    <div id="content" class="content">
+      <p>Selecione uma opção no menu.</p>
+    </div>
+
+  </div>
+
+
+  <!-- Scripts (order matters) -->
+    <script src="/scripts/app.js"></script>
+    <script src="/scripts/auth.js"></script>
+    <script src="/scripts/navigation.js"></script>
+    <script src="/scripts/profile.js"></script>
+    <script src="/scripts/icpo.js"></script>
+    <script src="/scripts/companies.js"></script>
+
+  <!--
+    GAS SCRIPTLET INJECTION POINT
+    In the actual .html GAS template, replace the two lines below with:
+      var OAUTH_SUCCESS = <?= oauthSuccess ?>;
+      var OAUTH_ERROR   = <?= oauthError ?>;
+  -->
+  <script>
+    var OAUTH_SUCCESS = false;
+    var OAUTH_ERROR   = false;
+  </script>
+
+  <!-- Bootstrap initialisation (runs after all scripts are loaded) -->
+  <script>
+    $(function () {
+      Auth.init();
+    });
+  </script>
+
+</body>
+</html>

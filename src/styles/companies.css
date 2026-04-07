@@ -1,0 +1,97 @@
+/* =============================================================
+   companies.css — Companies table (aligned with design tokens)
+   ============================================================= */
+
+/* ===== CARD HEADER ===== */
+.card__header {
+  margin-bottom: 18px;
+}
+
+.card__title {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.card__subtitle {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ===== TABLE WRAPPER ===== */
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+}
+
+/* ===== TABLE BASE ===== */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+/* ===== HEADER ===== */
+.table thead {
+  background: var(--surface-2);
+}
+
+.table th {
+  text-align: left;
+  padding: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border-subtle);
+  letter-spacing: 0.04em;
+}
+
+/* ===== BODY ===== */
+.table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+}
+
+/* ===== ROW HOVER ===== */
+.table tbody tr {
+  transition: background 0.15s;
+}
+
+.table tbody tr:hover {
+  background: var(--surface-1);
+}
+
+/* ===== STATUS BADGE ===== */
+.status {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* Pending */
+.status-pending {
+  background: rgba(241, 196, 15, 0.12);
+  color: #f1c40f;
+}
+
+/* Approved */
+.status-approved {
+  background: rgba(46, 204, 113, 0.12);
+  color: #2ecc71;
+}
+
+/* Rejected */
+.status-rejected {
+  background: rgba(231, 76, 60, 0.12);
+  color: #e74c3c;
+}
+
+/* ===== NOTES ===== */
+.table td:last-child {
+  color: var(--text-muted);
+  font-size: 12px;
+}

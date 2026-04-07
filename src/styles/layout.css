@@ -1,0 +1,130 @@
+/* =============================================================
+   layout.css — App shell, sidebar, content area
+   Wolf Business Advisory
+   ============================================================= */
+
+/* ---- App shell ---- */
+#app-shell        { display: none; }
+#app-shell.visible {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ---- Sidebar ---- */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 24px 16px;
+  background: var(--navy-light);
+  border-right: 1px solid var(--border-subtle);
+  overflow-y: auto;
+  height: 100vh;
+}
+
+/* Logo */
+.sidebar__logo-wrap {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 20px;
+}
+.sidebar__logo {
+  width: 130px;
+  height: auto;
+}
+
+/* User block */
+.sidebar__user { margin-bottom: 20px; }
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--surface-1);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+}
+.user__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: #0a0800;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.user__info { overflow: hidden; }
+.user__name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.user__meta {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: capitalize;
+}
+
+/* Accordion (jQuery UI override) */
+#sidebar-accordion { flex: 1; }
+
+#sidebar-accordion .ui-accordion-header {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-subtle);
+  border-radius: 0;
+  padding: 10px 4px;
+  cursor: pointer;
+  outline: none;
+}
+#sidebar-accordion .ui-accordion-header:hover { color: var(--gold); }
+#sidebar-accordion .ui-accordion-header.ui-state-active { color: var(--gold); }
+#sidebar-accordion .ui-accordion-content {
+  background: transparent;
+  border: none;
+  padding: 10px 0 6px;
+}
+#sidebar-accordion .ui-accordion-header .ui-accordion-header-icon { display: none; }
+
+/* ---- Content area ---- */
+.content {
+  overflow-y: auto;
+  padding: 32px 36px;
+  background: var(--navy);
+}
+
+/* Responsive: collapse sidebar on small screens */
+@media (max-width: 768px) {
+  #app-shell.visible {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+  }
+  .sidebar {
+    height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 12px;
+    gap: 8px;
+  }
+  .sidebar__logo-wrap,
+  .sidebar__user { display: none; }
+  .content { padding: 20px 16px; }
+}
